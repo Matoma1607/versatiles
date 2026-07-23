@@ -1,0 +1,6 @@
+{
+  "name": "Tienda de Ropa Online",
+  "description": "Tienda de ropa online elegante con catálogo, carrito de compras, checkout configurable con Google Sheets y envío de recibo automatizado por mail.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

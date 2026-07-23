@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Space Grotesk", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  /* Nueva Paleta Masculina, Urbana y Profesional */
+  --color-brand-light: #faf9f6;
+  --color-brand-medium: #a46a86;
+  --color-brand-primary: #831444;
+  --color-brand-dark: #580c2c;
+  --color-brand-deep: #111111;
+}
+
+/* Clases utilitarias personalizadas */
+.text-gradient {
+  background: linear-gradient(135deg, #831444, #111111);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-brand {
+  background: linear-gradient(135deg, #831444, #111111);
+}
+
+.bg-gradient-brand-hover {
+  background: linear-gradient(135deg, #580c2c, #000000);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-serif-italic {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #ffffff;
+  color: #111111;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
