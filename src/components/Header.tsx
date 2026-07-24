@@ -230,16 +230,15 @@ export default function Header({
           {/* Actions & Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">
             
-            {/* Active Order Button if present */}
+            {/* Active Order Button if present (Desktop only to keep mobile header clean) */}
             {orderResult && onViewOrderResult && (
               <button
                 onClick={onViewOrderResult}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-[11px] font-display font-bold uppercase tracking-wider hover:bg-emerald-100 transition-all cursor-pointer shadow-xs animate-pulse"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-[11px] font-display font-bold uppercase tracking-wider hover:bg-emerald-100 transition-all cursor-pointer shadow-xs animate-pulse"
                 title="Ver tu pedido activo y enviar por WhatsApp"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                <span className="hidden sm:inline">Pedido {orderResult.idPedido}</span>
-                <span className="sm:hidden">Pedido</span>
+                <span>Pedido {orderResult.idPedido}</span>
                 <span className="bg-emerald-700 text-white text-[9px] px-1.5 py-0.2 rounded-full font-mono">
                   VER
                 </span>
@@ -283,6 +282,24 @@ export default function Header({
           </div>
         </div>
       </header>
+
+      {/* Mobile Active Order Banner (Appears cleanly below header without overlapping header elements) */}
+      {orderResult && onViewOrderResult && (
+        <div className="sm:hidden bg-emerald-950 text-emerald-100 px-4 py-2.5 flex items-center justify-between text-xs border-b border-emerald-800/80 shadow-xs sticky top-20 z-35">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="truncate text-[11px] font-mono">
+              Pedido <strong className="text-white font-bold">#{orderResult.idPedido}</strong> activo
+            </span>
+          </div>
+          <button
+            onClick={onViewOrderResult}
+            className="bg-emerald-500 hover:bg-emerald-400 text-emerald-950 px-3 py-1 rounded-full text-[10px] font-bold font-mono uppercase tracking-wider shrink-0 transition-all active:scale-95 cursor-pointer shadow-sm ml-2"
+          >
+            Ver Pedido
+          </button>
+        </div>
+      )}
 
       {/* Sticky Active Filter sub-header bar */}
       <AnimatePresence>
@@ -461,6 +478,26 @@ export default function Header({
               </div>
 
               <div className="py-6 flex-1 overflow-y-auto">
+                {orderResult && onViewOrderResult && (
+                  <div className="mb-6 px-1">
+                    <button
+                      onClick={() => {
+                        onViewOrderResult();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="w-full p-3.5 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 font-mono text-xs font-bold flex items-center justify-between hover:bg-emerald-100 transition-all cursor-pointer shadow-xs active:scale-[0.98]"
+                    >
+                      <div className="flex items-center gap-2 truncate">
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                        <span className="truncate">Pedido #{orderResult.idPedido} Activo</span>
+                      </div>
+                      <span className="bg-emerald-700 text-white text-[9px] px-2.5 py-1 rounded-full uppercase font-bold tracking-wider shrink-0 ml-2">
+                        Ver Detalle
+                      </span>
+                    </button>
+                  </div>
+                )}
+
                 <h3 className="text-xs font-mono tracking-widest text-brand-primary uppercase mb-4 px-3">CATEGORÍAS</h3>
                 <div className="space-y-1">
                   <button
