@@ -501,7 +501,7 @@ export default function App() {
   const cartCount = cart.reduce((sum, item) => sum + item.cantidad, 0);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fafafc] text-brand-deep">
+    <div className="min-h-screen flex flex-col bg-[#fafafc] text-brand-deep w-full max-w-full overflow-x-hidden">
       
       {/* Header */}
       <Header
@@ -522,7 +522,7 @@ export default function App() {
       />
 
       {/* Main Content Layout */}
-      <main className="flex-grow">
+      <main className="flex-grow w-full max-w-full overflow-x-hidden">
         
         {currentView === 'catalog' && (
           <>
@@ -531,7 +531,7 @@ export default function App() {
 
             {/* Destacado: Lo Más Vendidos */}
             {!categoriaSeleccionada && (
-              <section className="bg-brand-light border-b border-gray-100 py-12 md:py-16">
+              <section className="bg-brand-light border-b border-gray-100 py-12 md:py-16 overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="flex items-end justify-between mb-8">
                     <div>

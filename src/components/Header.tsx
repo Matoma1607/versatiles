@@ -291,13 +291,13 @@ export default function Header({
             initial={{ opacity: 0, height: 0, y: -10 }}
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -10 }}
-            className="w-full bg-[#831444]/5 border-b border-[#831444]/10 py-3.5 px-4 sm:px-6 lg:px-8 sticky top-20 z-30 backdrop-blur-sm"
+            className="w-full bg-[#831444]/5 border-b border-[#831444]/10 py-3.5 px-4 sm:px-6 lg:px-8 sticky top-20 z-30 backdrop-blur-sm overflow-hidden"
           >
             <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-center justify-between gap-3.5">
               <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse" />
-                  <p className="text-xs font-mono text-brand-deep/80 whitespace-nowrap">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse shrink-0" />
+                  <p className="text-xs font-mono text-brand-deep/80 truncate max-w-[220px] sm:max-w-none">
                     Categoría: <strong className="uppercase text-brand-primary tracking-wider">{categoriaSeleccionada}</strong>
                   </p>
                 </div>

@@ -31,7 +31,7 @@ export default function Hero({ onScrollToCatalog }: HeroProps) {
         <div className="lg:col-span-7 space-y-6 md:pr-8 relative">
           
           {/* Noticeable custom gradient glow backdrop centered behind text */}
-          <div className="absolute -left-12 -top-12 w-[110%] h-[120%] rounded-3xl bg-gradient-to-br from-[#831444]/15 via-[#831444]/5 to-transparent blur-3xl pointer-events-none z-0" />
+          <div className="absolute inset-0 -m-6 rounded-3xl bg-gradient-to-br from-[#831444]/15 via-[#831444]/5 to-transparent blur-3xl pointer-events-none z-0" />
           
           {/* Accent Label */}
           <motion.div

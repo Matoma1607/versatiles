@@ -296,41 +296,41 @@ export default function CheckoutForm({ cartItems, onBack, onSubmit, isSubmitting
           </p>
 
           {/* Delivery Method Selection Tabs */}
-          <div className="grid grid-cols-3 gap-3 mb-8">
+          <div className="grid grid-cols-3 gap-1.5 sm:gap-3 mb-8">
             <button
               onClick={() => { setMetodo('Retiro en tienda'); setErrors({}); }}
-              className={`p-4 rounded-md border flex flex-col items-center text-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`p-2.5 sm:p-4 rounded-md border flex flex-col items-center text-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
                 metodo === 'Retiro en tienda'
                   ? 'bg-[#faf9f6] border-brand-primary text-brand-primary shadow-sm scale-[1.01] font-semibold'
                   : 'border-gray-200 bg-white text-brand-deep/75 hover:border-brand-primary hover:text-brand-primary'
               }`}
             >
               <Store className="w-4 h-4 shrink-0" />
-              <span className="text-[10px] font-mono uppercase tracking-wider leading-tight">Retiro en Tienda</span>
+              <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider leading-tight">Retiro en Tienda</span>
             </button>
 
             <button
               onClick={() => { setMetodo('Retiro vía Andreani'); setErrors({}); }}
-              className={`p-4 rounded-md border flex flex-col items-center text-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`p-2.5 sm:p-4 rounded-md border flex flex-col items-center text-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
                 metodo === 'Retiro vía Andreani'
                   ? 'bg-[#faf9f6] border-brand-primary text-brand-primary shadow-sm scale-[1.01] font-semibold'
                   : 'border-gray-200 bg-white text-[#5c5b57] hover:border-brand-primary hover:text-brand-primary'
               }`}
             >
               <Truck className="w-4 h-4 shrink-0" />
-              <span className="text-[10px] font-mono uppercase tracking-wider leading-tight">Sucursal Andreani</span>
+              <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider leading-tight">Sucursal Andreani</span>
             </button>
 
             <button
               onClick={() => { setMetodo('Envío a domicilio'); setErrors({}); }}
-              className={`p-4 rounded-md border flex flex-col items-center text-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`p-2.5 sm:p-4 rounded-md border flex flex-col items-center text-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
                 metodo === 'Envío a domicilio'
                   ? 'bg-[#faf9f6] border-brand-primary text-brand-primary shadow-sm scale-[1.01] font-semibold'
                   : 'border-gray-200 bg-white text-[#5c5b57] hover:border-brand-primary hover:text-brand-primary'
               }`}
             >
               <MapPin className="w-4 h-4 shrink-0" />
-              <span className="text-[10px] font-mono uppercase tracking-wider leading-tight">A Domicilio</span>
+              <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider leading-tight">A Domicilio</span>
             </button>
           </div>
 

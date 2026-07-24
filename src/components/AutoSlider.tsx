@@ -17,7 +17,7 @@ export default function AutoSlider() {
   const [currentIndex, setCurrentIndex] = useState(IMAGES.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -106,7 +106,7 @@ export default function AutoSlider() {
         }}
       />
       <div 
-        className="absolute right-[-10%] bottom-[10%] w-[400px] h-[400px] rounded-full blur-[110px] pointer-events-none opacity-25 mix-blend-multiply"
+        className="absolute right-0 bottom-[10%] w-[350px] h-[350px] rounded-full blur-[110px] pointer-events-none opacity-25 mix-blend-multiply"
         style={{
           background: 'radial-gradient(circle, rgba(164, 106, 134, 0.2) 0%, rgba(164, 106, 134, 0.05) 60%, rgba(250,249,246,0) 100%)'
         }}
