@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 const IMAGES = [
-  "https://i.postimg.cc/mkkZDJ8Q/IMG-0688.avif",
   "https://i.postimg.cc/ZRT5kCNG/IMG-0697.avif",
+  "https://i.postimg.cc/mkkZDJ8Q/IMG-0688.avif",
   "https://i.postimg.cc/tTX40YP0/IMG-0708.avif",
   "https://i.postimg.cc/sXVgFvSC/IMG-0664.avif",
   "https://i.postimg.cc/Y0029Zb4/IMG-0678.avif"
