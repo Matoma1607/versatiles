@@ -971,7 +971,7 @@ export default function App() {
 
       {/* Floating WhatsApp Button */}
       <a
-        href={`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent("¡Hola! Me interesa conocer más sobre su colección de ropa urbana y profesional.")}`}
+        href={`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent("¡Hola! ✨ Bienvenido/a a VersatileShoop.\n\n¡Nos alegra mucho saludarte! En un momento uno de nuestros asesores estará con vos para ayudarte a armar tu outfit ideal.\n\n🔥 ¿Quieres adelantarte? Chequea lo último que llegó a la tienda: https://www.instagram.com/versatile_shoop?igsh=M2Y5bDlhMmtlczds")}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-[#25D366] text-white px-4 py-3.5 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all hover:scale-105 group cursor-pointer"
