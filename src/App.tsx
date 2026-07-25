@@ -299,17 +299,34 @@ export default function App() {
     const idUnica = `${producto.id}-${talle}`;
 
     setCart((prevCart) => {
-      const existing = prevCart.find((item) => item.idUnica === idUnica);
+      // Si existía un pedido registrado previamente, fusionamos sus prendas con el carrito
+      // para que el usuario pueda sumar nuevos productos en un ÚNICO pedido unificado
+      let baseCart = [...prevCart];
+      if (orderResult && orderResult.items && orderResult.items.length > 0) {
+        orderResult.items.forEach((orderItem) => {
+          if (!baseCart.some((item) => item.idUnica === orderItem.idUnica)) {
+            baseCart.push(orderItem);
+          }
+        });
+      }
+
+      const existing = baseCart.find((item) => item.idUnica === idUnica);
       if (existing) {
         // Validar no superar el stock
         const nuevaCantidad = Math.min(producto.stock, existing.cantidad + 1);
-        return prevCart.map((item) => 
+        return baseCart.map((item) => 
           item.idUnica === idUnica ? { ...item, cantidad: nuevaCantidad } : item
         );
       } else {
-        return [...prevCart, { idUnica, producto, talle, cantidad: 1 }];
+        return [...baseCart, { idUnica, producto, talle, cantidad: 1 }];
       }
     });
+
+    // Limpiar orderResult individual para consolidar todo en un ÚNICO CARRITO UNIFICADO
+    if (orderResult) {
+      setOrderResult(null);
+      localStorage.removeItem('VIOLETA_LAST_ORDER');
+    }
 
     // Abrir carrito lateral de inmediato para feedback instantáneo del usuario
     setIsCartOpen(true);
@@ -441,6 +458,19 @@ export default function App() {
   };
 
   const handleBackFromSuccess = () => {
+    if (orderResult && orderResult.items && orderResult.items.length > 0) {
+      setCart((prevCart) => {
+        let baseCart = [...prevCart];
+        orderResult.items.forEach((orderItem) => {
+          if (!baseCart.some((item) => item.idUnica === orderItem.idUnica)) {
+            baseCart.push(orderItem);
+          }
+        });
+        return baseCart;
+      });
+      setOrderResult(null);
+      localStorage.removeItem('VIOLETA_LAST_ORDER');
+    }
     changeView('catalog');
   };
 
