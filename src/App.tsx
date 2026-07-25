@@ -299,34 +299,17 @@ export default function App() {
     const idUnica = `${producto.id}-${talle}`;
 
     setCart((prevCart) => {
-      // Si existía un pedido registrado previamente, fusionamos sus prendas con el carrito activo
-      // para mantener un ÚNICO PEDIDO UNIFICADO con todos los productos vinculados
-      let baseCart = [...prevCart];
-      if (orderResult && orderResult.items && orderResult.items.length > 0) {
-        orderResult.items.forEach((orderItem) => {
-          if (!baseCart.some((item) => item.idUnica === orderItem.idUnica)) {
-            baseCart.push(orderItem);
-          }
-        });
-      }
-
-      const existing = baseCart.find((item) => item.idUnica === idUnica);
+      const existing = prevCart.find((item) => item.idUnica === idUnica);
       if (existing) {
         // Validar no superar el stock
         const nuevaCantidad = Math.min(producto.stock, existing.cantidad + 1);
-        return baseCart.map((item) => 
+        return prevCart.map((item) => 
           item.idUnica === idUnica ? { ...item, cantidad: nuevaCantidad } : item
         );
       } else {
-        return [...baseCart, { idUnica, producto, talle, cantidad: 1 }];
+        return [...prevCart, { idUnica, producto, talle, cantidad: 1 }];
       }
     });
-
-    // Limpiar orderResult individual para consolidar todo en un ÚNICO CARRITO UNIFICADO
-    if (orderResult) {
-      setOrderResult(null);
-      localStorage.removeItem('VIOLETA_LAST_ORDER');
-    }
 
     // Abrir carrito lateral de inmediato para feedback instantáneo del usuario
     setIsCartOpen(true);
@@ -380,7 +363,12 @@ export default function App() {
       precio: item.producto.precio
     }));
 
+    // Generar un ID de pedido corto, limpio y fácil de guiar (ej: PED-4829)
+    const numeroAleatorio = Math.floor(1000 + Math.random() * 9000);
+    let idGenerado = `PED-${numeroAleatorio}`;
+
     const payload: PedidoSubmit = {
+      idPedido: idGenerado,
       cliente: pedidoData.cliente,
       gmail: pedidoData.gmail,
       telefono: pedidoData.telefono,
@@ -389,8 +377,6 @@ export default function App() {
       productos: productosParaEnviar,
       total: totalCompra
     };
-
-    let idGenerado = "PED-" + Date.now();
 
     if (apiUrl) {
       try {
@@ -455,19 +441,6 @@ export default function App() {
   };
 
   const handleBackFromSuccess = () => {
-    if (orderResult && orderResult.items && orderResult.items.length > 0) {
-      setCart((prevCart) => {
-        let baseCart = [...prevCart];
-        orderResult.items.forEach((orderItem) => {
-          if (!baseCart.some((item) => item.idUnica === orderItem.idUnica)) {
-            baseCart.push(orderItem);
-          }
-        });
-        return baseCart;
-      });
-      setOrderResult(null);
-      localStorage.removeItem('VIOLETA_LAST_ORDER');
-    }
     changeView('catalog');
   };
 
@@ -804,12 +777,39 @@ export default function App() {
 
         {/* View: Checkout Form */}
         {currentView === 'checkout' && (
-          <CheckoutForm
-            cartItems={cart}
-            onBack={() => changeView('catalog')}
-            onSubmit={handleSubmitPedido}
-            isSubmitting={submittingPedido}
-          />
+          cart.length > 0 ? (
+            <CheckoutForm
+              cartItems={cart}
+              onBack={() => changeView('catalog')}
+              onSubmit={handleSubmitPedido}
+              isSubmitting={submittingPedido}
+            />
+          ) : orderResult ? (
+            <SuccessScreen
+              idPedido={orderResult.idPedido}
+              cliente={orderResult.cliente}
+              gmail={orderResult.gmail}
+              telefono={orderResult.telefono}
+              metodoEntrega={orderResult.metodoEntrega}
+              datosEntrega={orderResult.datosEntrega}
+              cartItems={orderResult.items}
+              total={orderResult.total}
+              onReset={handleResetStore}
+              onBackToStore={handleBackFromSuccess}
+            />
+          ) : (
+            <div className="max-w-md mx-auto my-16 p-8 bg-white rounded-2xl border border-gray-100 shadow-sm text-center space-y-4">
+              <ShoppingBag className="w-12 h-12 text-brand-primary mx-auto opacity-80" />
+              <h3 className="font-display font-bold text-lg text-brand-deep uppercase">Tu carrito está vacío</h3>
+              <p className="text-xs text-brand-deep/60">Agrega productos desde nuestro catálogo antes de realizar un pedido.</p>
+              <button 
+                onClick={() => changeView('catalog')} 
+                className="px-6 py-2.5 bg-brand-primary text-white rounded-xl text-xs font-bold font-mono uppercase tracking-wider hover:bg-brand-dark transition-all cursor-pointer shadow-sm"
+              >
+                Ir al Catálogo
+              </button>
+            </div>
+          )
         )}
 
         {/* View: Success order confirmation screen */}

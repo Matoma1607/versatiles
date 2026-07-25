@@ -289,7 +289,7 @@ export default function Header({
           <div className="flex items-center gap-2 min-w-0">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
             <span className="truncate text-[11px] font-mono">
-              Pedido <strong className="text-white font-bold">#{orderResult.idPedido}</strong> activo
+              Pedido <strong className="text-white font-bold">{orderResult.idPedido}</strong> activo
             </span>
           </div>
           <button
@@ -489,7 +489,7 @@ export default function Header({
                     >
                       <div className="flex items-center gap-2 truncate">
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                        <span className="truncate">Pedido #{orderResult.idPedido} Activo</span>
+                        <span className="truncate">Pedido {orderResult.idPedido} Activo</span>
                       </div>
                       <span className="bg-emerald-700 text-white text-[9px] px-2.5 py-1 rounded-full uppercase font-bold tracking-wider shrink-0 ml-2">
                         Ver Detalle

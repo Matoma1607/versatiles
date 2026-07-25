@@ -47,6 +47,7 @@ export interface DatosDomicilio {
 }
 
 export interface PedidoSubmit {
+  idPedido?: string;
   cliente: string;
   gmail: string;
   telefono: string;
