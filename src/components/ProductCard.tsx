@@ -50,7 +50,7 @@ export default function ProductCard({
       className={`group rounded-xl border transition-all duration-300 flex flex-col h-full overflow-hidden cursor-pointer relative ${
         producto.stock === 0
           ? 'bg-gray-100/90 border-gray-300 grayscale opacity-80 shadow-none'
-          : 'bg-white border-gray-100 shadow-sm hover:shadow-md'
+          : 'bg-white border-gray-200 hover:border-black hover:ring-1 hover:ring-black/10 shadow-sm hover:shadow-md'
       }`}
       onClick={() => onProductClick(producto)}
     >

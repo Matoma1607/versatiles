@@ -11,16 +11,16 @@ export default function Hero({ onScrollToCatalog }: HeroProps) {
   const heroImage = "https://i.postimg.cc/3NNrRVnm/IMG-0682.avif";
 
   return (
-    <section className="relative overflow-hidden bg-[#faf9f6] border-b border-gray-100 min-h-[480px] lg:min-h-[560px] flex items-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#faf0f4] via-[#fbf5f7] to-[#faf9f6] border-b border-gray-100 min-h-[480px] lg:min-h-[560px] flex items-center">
       
-      {/* Decorative subtle texture/gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-[#faf9f6]/40 pointer-events-none" />
+      {/* Decorative ambient color gradient overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#831444]/5 via-transparent to-white/40 pointer-events-none" />
 
-      {/* Premium brand gradient glow behind the text */}
+      {/* Soft brand gradient glow behind the text */}
       <div 
-        className="absolute left-[-5%] top-[10%] w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none opacity-40 mix-blend-multiply"
+        className="absolute left-[-10%] top-[-10%] w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none opacity-30 mix-blend-multiply"
         style={{
-          background: 'radial-gradient(circle, rgba(131,20,68,0.25) 0%, rgba(17,17,17,0.1) 60%, rgba(250,249,246,0) 100%)'
+          background: 'radial-gradient(circle, rgba(131,20,68,0.2) 0%, rgba(200,160,180,0.1) 50%, rgba(250,249,246,0) 100%)'
         }}
       />
 
@@ -30,8 +30,8 @@ export default function Hero({ onScrollToCatalog }: HeroProps) {
         {/* Left Editorial Column */}
         <div className="lg:col-span-7 space-y-6 md:pr-8 relative">
           
-          {/* Noticeable custom gradient glow backdrop centered behind text */}
-          <div className="absolute inset-0 -m-6 rounded-3xl bg-gradient-to-br from-[#831444]/15 via-[#831444]/5 to-transparent blur-3xl pointer-events-none z-0" />
+          {/* Subtle gradient glow backdrop behind text */}
+          <div className="absolute inset-0 -m-6 rounded-3xl bg-gradient-to-br from-[#831444]/8 via-[#831444]/2 to-transparent blur-2xl pointer-events-none z-0" />
           
           {/* Accent Label */}
           <motion.div
@@ -43,16 +43,16 @@ export default function Hero({ onScrollToCatalog }: HeroProps) {
             <span className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-pulse"></span>
             NUEVA TEMPORADA
           </motion.div>
- 
+
           {/* Title */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative z-10 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-deep tracking-tight uppercase leading-[0.95]"
+            className="relative z-10 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-black tracking-tight uppercase leading-[0.95]"
           >
             Estilo Urbano <br />
-            <span className="text-brand-primary block mt-1.5">
+            <span className="text-black block mt-1.5">
               Sin Límites.
             </span>
           </motion.h2>
